@@ -1,0 +1,11 @@
+chat-service/.env
+chat-service/.env.prod
+notification-service/.env
+user-service/.env
+user-service/.env.prod
+chat-service/node_modules/
+chat-service/build/
+notification-service/node_modules/
+notification-service/build/
+user-service/node_modules/
+user-service/build/
