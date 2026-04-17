@@ -30,7 +30,7 @@ const Register = () => {
     } else {
       setError("");
       console.log("Registration Data:", { email, password });
-      fetch("http://localhost:85/user/register", {
+      fetch(`${import.meta.env.VITE_API_BASE_URL}user/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

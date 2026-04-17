@@ -27,7 +27,7 @@ const Chat = () => {
   const accessToken = localStorage.getItem("access_token");
 
   useEffect(() => {
-    socket = io("http://localhost:85", {
+    socket = io(import.meta.env.VITE_API_BASE_URL, {
       path: "/socket.io",
       transports: ["websocket"],
       query: { accessToken },
@@ -49,7 +49,7 @@ const Chat = () => {
 
   // 1. Fetch User List (Mocking an API call)
   useEffect(() => {
-    fetch("http://localhost:85/user/users", {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}user/users`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -67,7 +67,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (activeUser)
-      fetch(`http://localhost:85/chat/get/${activeUser._id}`, {
+      fetch(`${import.meta.env.VITE_API_BASE_URL}chat/get/${activeUser._id}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -102,7 +102,7 @@ const Chat = () => {
       }),
     };
 
-    fetch(`http://localhost:85/chat/send`, {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}chat/send`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,

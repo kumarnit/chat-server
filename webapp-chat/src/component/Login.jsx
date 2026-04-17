@@ -21,7 +21,7 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:85/user/login", {
+    fetch(`${import.meta.env.VITE_API_BASE_URL}user/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
