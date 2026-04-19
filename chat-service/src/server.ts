@@ -1,20 +1,30 @@
 import { Server } from "http";
-import { Socket, Server as SocketIOServer } from "socket.io";
+import cors from "cors";
+import { Server as SocketIOServer } from "socket.io";
 import app from "./app";
-import { Message, connectDB } from "./database";
+import { connectDB } from "./database";
 import config from "./config/config";
 import { initSocket } from "./services/SocketService";
 
 let server: Server;
 connectDB();
 
+// CORS Configuration
+const corsOptions = {
+    origin: "*",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
+
 server = app.listen(config.PORT, () => {
     console.log(`Server is running on port ${config.PORT}`);
 });
+
 const io = new SocketIOServer(server, {
-    cors: { 
-        origin: "*",
-    }
+    cors: corsOptions,
+    transports: ["websocket", "polling"],
 });
 
 initSocket(io);
