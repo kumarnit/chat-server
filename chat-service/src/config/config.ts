@@ -1,10 +1,6 @@
 import { config } from "dotenv";
 
 let configFile = `./.env`;
-if(process.env.NODE_ENV === "production"){
-    configFile = `./.env.prod`
-    console.log(`in config(): ${JSON.stringify(JSON.parse(JSON.stringify(process.env)))}`)
-}
 
 config({ path: configFile });
 
